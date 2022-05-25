@@ -1,6 +1,7 @@
 package com.example.bumblebeejavaissues;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import io.getstream.chat.android.client.logger.ChatLogLevel;
 import io.getstream.chat.android.offline.model.message.attachments.UploadAttachmentsNetworkType;
 import io.getstream.chat.android.offline.plugin.configuration.Config;
 import io.getstream.chat.android.offline.plugin.factory.StreamOfflinePluginFactory;
+import io.getstream.chat.android.ui.message.list.viewmodel.factory.MessageListViewModelFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,5 +33,10 @@ public class MainActivity extends AppCompatActivity {
                 .withPlugin(streamOfflinePluginFactory)
                 .logLevel(ChatLogLevel.ALL) // Set to NOTHING in prod
                 .build();
+    }
+
+    protected void viewModelFactoryExample(){
+        MessageListViewModelFactory factory = new MessageListViewModelFactory("someCid");
+        ViewModelProvider provider = new ViewModelProvider(this, factory);
     }
 }
